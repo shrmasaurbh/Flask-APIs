@@ -1,0 +1,2 @@
+2019-05-09 13:31:18,430 [DEBUG   ] apiengine  : Params : {'data': {'object_type': '9783694447', 'login_type': 1, 'password': '12345qwer', 'remember_me': 0}, 'meta': {'cc_src_type_id': 1, 'cc_project_id': 2, 'user_auth_token': 'ANDJ#DI#NNDD', 'url': 'ddd/oem'}}
+2019-05-09 13:32:33,543 [DEBUG   ] apiengine  : Params : {'data': {'object_type': '8612614847', 'login_type': 1, 'password': '12345qwer', 'remember_me': 0}, 'meta': {'cc_src_type_id': 1, 'cc_project_id': 2, 'user_auth_token': 'ANDJ#DI#NNDD', 'url': 'ddd/oem'}}
