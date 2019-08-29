@@ -23,8 +23,6 @@ def create_restful_api(app):
     # api.add_resource(Change, '/password/change')
     # api.add_resource(Reset, '/password/reset/<string:token>', endpoint='reset_password')
     api.add_resource(ResetNewpassword, '/reset-form', endpoint='reset via password')
-    # def upload_file():
-   #return render_template('upload_part_brand.html')
     # api.add_resource(UserAuth, '/user_auth/<string:username>' ,endpoint="get user username")
     # api.add_resource(UserAuth, '/user_auth/<int:user_id>' ,endpoint="get user id ")
     # api.add_resource(UserAuth, '/user_auth' ,endpoint="get all")
