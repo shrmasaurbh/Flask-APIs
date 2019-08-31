@@ -32,8 +32,6 @@ class UserSignUp(Resource):
         sql_data={}
         error={}
         mongo_data={}
-        # import pdb
-        # pdb.set_trace()
         sql_data['created_at'] = datetime.datetime.utcnow()
         
         mongo_data['created_at'] = datetime.datetime.utcnow()
@@ -41,8 +39,6 @@ class UserSignUp(Resource):
         
         sql_data['is_active'] = True
         mongo_data['is_active'] = True
-        # import pdb
-        # pdb.set_trace()
 
         try:
             import json
@@ -57,8 +53,6 @@ class UserSignUp(Resource):
             error = {"error":{"message":serialize_errors, "status_code": 400 }}
             return self.response.custom_response("error",error,400)
 
-        # import pdb
-        # pdb.set_trace()
         auth_insert_data ={}
         password_hashed = password_hash(serialized_data['data']['info']['password'])
 
@@ -110,8 +104,6 @@ class UserSignUp(Resource):
         mongo_data['updated_by'] = 1
         mongo_data['user_auth_id'] = user_auth_id
         mongo_data['area_id'] = serialized_data['data']['info']['pincode']
-        # import pdb
-        # pdb.set_trace()
         try:
             mongo_obj  = CcUserProfile(**mongo_data).save()
         except Exception as e:
@@ -153,8 +145,6 @@ class UserSignUp(Resource):
         # email_details = {}
         # email_details['email_type'] = '2'
         #email_details['otp_value'] = otp['otp_val']
-        # import pdb
-        # pdb.set_trace()
         #send_sms = send_sms(customer_details['data'][0]['mobile_no'], **email_details)
         # send_email = send_email(customer_details['data'][0]['email'], **email_details)
 
@@ -226,8 +216,6 @@ class ChangePassword(Resource):
         except BadRequest as e:
             error = {"error":{"message":"Please check meta or data is provided", "status_code": 400 }}
             return self.response.custom_response("error",error,400)
-        # import pdb
-        # pdb.set_trace()
         serialized_data ,serialize_errors = self.serializer.load(payload)
 
         if serialize_errors:
@@ -243,8 +231,6 @@ class ChangePassword(Resource):
 
         from api.models.configure import mysql_session
 
-        # import pdb
-        # pdb.set_trace()
         sql_obj  = mysql_session.query(UserAuthModal).filter(UserAuthModal.id == user_id).first()
         if sql_obj is None:
             mysql_session.rollback()
@@ -252,8 +238,6 @@ class ChangePassword(Resource):
             return self.response.custom_response("error",error,400)
         
         auth_data = sql_obj.to_dict()
-        # import pdb 
-        # pdb.set_trace() 
         match_old_pass = password_check(serialized_data['data']['password']['old_password'],auth_data['password'])
         if not match_old_pass:
             error = {"error":{"message":"password not match", "status_code": 400}}
@@ -386,8 +370,6 @@ class GenerateOtp(Resource):
         sms_email_details={}
         sms_email_details['email_type'] = sms_email_details['sms_type'] = '1'
         sms_email_details['otp_value'] = otp['otp_val']
-        # import pdb
-        # pdb.set_trace()
         send_sms = send_sms(customer_details['data'][0]['mobile_no'], **sms_email_details)
         # send_email = send_email(customer_details['data'][0]['email'], **sms_email_details)
 
